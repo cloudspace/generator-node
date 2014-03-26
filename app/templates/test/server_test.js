@@ -1,6 +1,6 @@
 'use strict';
 
-var <%= safeSlugname %> = require('../lib/<%= slugname %>.js');
+var <%= safeSlugname %> = require('../server.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========

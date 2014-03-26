@@ -82,13 +82,28 @@ NodeGenerator.prototype.askFor = function askFor() {
 
 NodeGenerator.prototype.lib = function lib() {
   this.mkdir('lib');
-  this.template('lib/name.js', 'lib/' + this.slugname + '.js');
+  this.template('lib/server.js', 'server.js');
+  // this.template('lib/.env', '.env');
 };
 
-NodeGenerator.prototype.test = function test() {
-  this.mkdir('test');
-  this.template('test/name_test.js', 'test/' + this.slugname + '_test.js');
+// NodeGenerator.prototype.test = function test() {
+//   this.mkdir('test');
+//   this.template('test/server_test.js', 'test/server_test.js');
+// };
+
+NodeGenerator.prototype.config = function config() {
+  this.mkdir('config');
+  this.template('config/passport.js', 'config/passport.js');
+  this.template('config/routes.js', 'config/routes.js');
 };
+
+// NodeGenerator.prototype.public = function public() {
+//   this.mkdir('public');
+//   this.template('public/index.html', 'public/index.html');
+//   this.template('public/other_page.html', 'public/other_page.html');
+//   this.mkdir('public/javascripts');
+//   this.template('public/javascripts/script.js', 'public/javascripts/script.js');
+// };
 
 NodeGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('jshintrc', '.jshintrc');
