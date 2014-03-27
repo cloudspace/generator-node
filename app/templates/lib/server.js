@@ -25,7 +25,7 @@ app.configure(function(){
   // Basics
   app.set('port', 80);
   app.use(prerenderer());
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/public/app'));
   app.use(favicon());
   app.use(logger('dev'));
   app.use(bodyParser.json());
