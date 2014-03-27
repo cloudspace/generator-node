@@ -127,10 +127,17 @@ NodeGenerator.prototype.lib = function lib() {
   }
 };
 
+// Tests?
 // NodeGenerator.prototype.test = function test() {
 //   this.mkdir('test');
 //   this.template('test/server_test.js', 'test/server_test.js');
 // };
+
+NodeGenerator.prototype.examples = function examples() {
+  if(this.props.use_passport != "n"){
+    this.template('examples/passport_example.js', 'public/app/passport_example.html');
+  }
+};
 
 
 NodeGenerator.prototype.config = function config() {
@@ -138,7 +145,7 @@ NodeGenerator.prototype.config = function config() {
     this.mkdir('config');
     this.template('config/passport.js', 'config/passport.js');
     this.template('config/routes.js', 'config/routes.js');
-  };
+  }
 }
 
 NodeGenerator.prototype.projectfiles = function projectfiles() {
