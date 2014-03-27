@@ -122,7 +122,7 @@ NodeGenerator.prototype.askFor = function askFor() {
 NodeGenerator.prototype.lib = function lib() {
   this.mkdir('lib');
   this.template('lib/server.js', 'server.js');
-  if(this.props.use_passport != "n"){
+  if(/y/i.test(this.props.use_passport) === true){
     this.template('lib/.env.js', '.env');
   }
 };
@@ -134,14 +134,14 @@ NodeGenerator.prototype.lib = function lib() {
 // };
 
 NodeGenerator.prototype.examples = function examples() {
-  if(this.props.use_passport != "n"){
+  if(/y/i.test(this.props.use_passport) === true){
     this.template('examples/passport_example.js', 'public/app/passport_example.html');
   }
 };
 
 
 NodeGenerator.prototype.config = function config() {
-  if(this.props.use_passport != "n"){
+  if(/y/i.test(this.props.use_passport) === true){
     this.mkdir('config');
     this.template('config/passport.js', 'config/passport.js');
     this.template('config/routes.js', 'config/routes.js');
