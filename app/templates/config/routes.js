@@ -4,40 +4,54 @@ module.exports = function(app, passport) {
         res.render('index', {current_user: req.user});
     });
 
+<% if(/y/i.test(props.use_passport) === true){ %>
     app.get('/profile', isLoggedIn, function(req, res) {
         res.json(req.user);
     });
 
+    <% if(props.facebook_client_id != "" && props.facebook_client_secret != ""){ %>
     app.get('/auth/facebook', passport.authenticate('facebook'));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
         successRedirect: '/profile',
         failureRedirect: '/'
     }));
-
+    <% } %>
+    <% if(props.google_client_id != "" && props.google_client_secret != ""){ %>
     app.get('/auth/google', passport.authenticate('google'));
     app.get('/auth/google/callback', passport.authenticate('google', {
         successRedirect: '/profile',
         failureRedirect: '/'
     }));
-
+    <% } %>
+    <% if(props.github_client_id != "" && props.github_client_secret != ""){ %>
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', passport.authenticate('github', {
         successRedirect: '/profile',
         failureRedirect: '/'
     }));
-
+    <% } %>
+    <% if(props.twitter_consumer_key != "" && props.twitter_consumer_secret != ""){ %>
     app.get('/auth/twitter', passport.authenticate('twitter'));
     app.get('/auth/twitter/callback', passport.authenticate('twitter', {
         successRedirect: '/profile',
         failureRedirect: '/'
     }));
-
+    <% } %>
+    <% if(props.linkedin_key != "" && props.linkedin_secret != ""){ %>
+    app.get('/auth/linkedin', passport.authenticate('linkedin', { state: Math.random().toString(36).slice(2) }));
+    app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+        successRedirect: '/profile',
+        failureRedirect: '/'
+    }));
+    <% } %>
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
+<% } %>
 }
 
+<% if(/y/i.test(props.use_passport) === true){ %>
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -46,3 +60,4 @@ function isLoggedIn(req, res, next) {
     // If not loggged in, go home!
     res.redirect('/');
 }
+<% } %>

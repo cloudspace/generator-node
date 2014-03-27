@@ -17,3 +17,7 @@ GOOGLE_CLIENT_SECRET=<%= props.google_client_secret %>
 GITHUB_CLIENT_ID=<%= props.github_client_id %>
 GITHUB_CLIENT_SECRET=<%= props.github_client_secret %>
 <% } %>
+<% if(props.linkedin_key != "" && props.linkedin_secret != ""){ %>
+LINKEDIN_KEY=<%= props.linkedin_key %>
+LINKEDIN_SECRET=<%= props.linkedin_secret %>
+<% } %>
