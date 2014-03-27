@@ -19,9 +19,6 @@ var express = require('express')
   , env = require('node-env-file')
   ;
 
-// Load process.env variables
-env(__dirname + '/.env');
-
 var app = express();
 
 app.configure(function(){
@@ -37,6 +34,10 @@ app.configure(function(){
   app.use(express.session({ secret: 'gobbledygook' }));
 });
 
+<% if(props.use_passport != "n"){ %>
+// Load process.env variables
+env(__dirname + '/.env');
+
 // Passport
 require('./config/passport')(passport);
 app.use(passport.initialize());
@@ -45,7 +46,8 @@ app.use(passport.session()); // persistent login sessions
 // Setup routing
 app.use(app.router);
 require('./config/routes')(app, passport);
+<% } %>
 
-server = http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

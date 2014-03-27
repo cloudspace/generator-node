@@ -53,7 +53,44 @@ NodeGenerator.prototype.askFor = function askFor() {
   }, {
     name: 'authorUrl',
     message: 'Author\'s Homepage'
-  }];
+  }, {
+    name: 'use_passport',
+    message: 'Would you like to use passport for 3rd party authentication?',
+    default: 'Y/n'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'facebook_client_id',
+    message: 'Facebook Key'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'facebook_client_secret',
+    message: 'Facebook Secret'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'twitter_consumer_key',
+    message: 'Twitter Key'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'twitter_consumer_secret',
+    message: 'Twitter Secret'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'google_client_id',
+    message: 'Google Key'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'google_client_id',
+    message: 'Google Secret'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'github_client_id',
+    message: 'Github Key'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'github_client_id',
+    message: 'Github Secret'
+  },
+  ];
 
   this.currentYear = (new Date()).getFullYear();
 
@@ -74,6 +111,8 @@ NodeGenerator.prototype.askFor = function askFor() {
       props.homepage = this.repoUrl;
     }
 
+    console.log(props)
+
     this.props = props;
 
     cb();
@@ -83,7 +122,9 @@ NodeGenerator.prototype.askFor = function askFor() {
 NodeGenerator.prototype.lib = function lib() {
   this.mkdir('lib');
   this.template('lib/server.js', 'server.js');
-  // this.template('lib/.env', '.env');
+  if(this.props.use_passport != "n"){
+    this.template('lib/.env.js', '.env');
+  }
 };
 
 // NodeGenerator.prototype.test = function test() {
@@ -91,19 +132,14 @@ NodeGenerator.prototype.lib = function lib() {
 //   this.template('test/server_test.js', 'test/server_test.js');
 // };
 
-NodeGenerator.prototype.config = function config() {
-  this.mkdir('config');
-  this.template('config/passport.js', 'config/passport.js');
-  this.template('config/routes.js', 'config/routes.js');
-};
 
-// NodeGenerator.prototype.public = function public() {
-//   this.mkdir('public');
-//   this.template('public/index.html', 'public/index.html');
-//   this.template('public/other_page.html', 'public/other_page.html');
-//   this.mkdir('public/javascripts');
-//   this.template('public/javascripts/script.js', 'public/javascripts/script.js');
-// };
+NodeGenerator.prototype.config = function config() {
+  if(this.props.use_passport != "n"){
+    this.mkdir('config');
+    this.template('config/passport.js', 'config/passport.js');
+    this.template('config/routes.js', 'config/routes.js');
+  };
+}
 
 NodeGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('jshintrc', '.jshintrc');
