@@ -54,6 +54,10 @@ NodeGenerator.prototype.askFor = function askFor() {
     name: 'authorUrl',
     message: 'Author\'s Homepage'
   }, {
+    name: 'use_vagrant',
+    message: 'Would you like to generate a Vagrantfile?',
+    default: 'Y/n'
+  }, {
     name: 'use_passport',
     message: 'Would you like to use passport for 3rd party authentication?',
     default: 'Y/n'
@@ -89,6 +93,14 @@ NodeGenerator.prototype.askFor = function askFor() {
     when: function(props) { return (/y/i).test(props.use_passport); },
     name: 'github_client_id',
     message: 'Github Secret'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'linkedin_key',
+    message: 'LinkedIn Key'
+  }, {
+    when: function(props) { return (/y/i).test(props.use_passport); },
+    name: 'linkedin_secret',
+    message: 'LinkedIn Secret'
   },
   ];
 
@@ -156,4 +168,11 @@ NodeGenerator.prototype.projectfiles = function projectfiles() {
   this.template('README.md');
   this.template('Gruntfile.js');
   this.template('_package.json', 'package.json');
+};
+
+NodeGenerator.prototype.vagrant = function vagrant() {
+  if(/y/i.test(this.props.use_vagrant) === true){
+    this.template('vagrant/vagrantfile.js', 'Vagrantfile');
+    this.template('vagrant/cheffile.js', 'Cheffile');
+  }
 };
