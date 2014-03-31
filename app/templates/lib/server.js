@@ -10,7 +10,7 @@
  * Licensed under the <%= license %> license.
  */
 
-<% console.log("useVagrant tests"); console.log(this.useVagrant); console.log(useVagrant) %>
+<% console.log("useVagrant: this.useVagrant"); console.log(this.useVagrant); console.log("useVagrant: useVagrant"); console.log(useVagrant) %>
 'use strict';
 
 var express = require('express')

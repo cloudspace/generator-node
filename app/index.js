@@ -395,7 +395,7 @@ NodeGenerator.prototype.askForLinkedInSecret = function askForLinkedInSecret() {
       cb();
     }.bind(this));
   } else {
-    this.useVagrant = this.options['linkedInSecret'];
+    this.linkedInSecret = this.options['linkedInSecret'];
   }
 };
 
