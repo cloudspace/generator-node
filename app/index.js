@@ -19,10 +19,6 @@ var NodeGenerator = module.exports = function NodeGenerator(args, options) {
 util.inherits(NodeGenerator, yeoman.generators.NamedBase);
 
 NodeGenerator.prototype.welcome = function welcome() {
-  console.log("this.name = ");
-  console.log(this.name)
-  console.log("this.options['name'] = ");
-  console.log(this.options['name'])
   // welcome message
   if (!this.options['skip-welcome-message']) {
     console.log(
@@ -30,6 +26,25 @@ NodeGenerator.prototype.welcome = function welcome() {
     '\nThe name of your project shouldn\'t contain "node" or "js" and' +
     '\nshould be a unique ID not already in use at search.npmjs.org.');
   }
+};
+
+NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
+  var cb = this.async();
+
+  console.log("this.useVagrant = ");
+  console.log(this.useVagrant)
+  console.log("this.options['useVagrant'] = ");
+  console.log(this.options['useVagrant'])
+
+  this.prompt([{
+    name: 'useVagrant',
+    message: 'Would you like to generate a Vagrantfile?',
+    default: 'Y/n'
+  }], function (props) {
+    this.useVagrant = props.useVagrant;
+
+    cb();
+  }.bind(this));
 };
 
 NodeGenerator.prototype.askForName = function askForName() {
@@ -149,20 +164,6 @@ NodeGenerator.prototype.askForAuthorUrl = function askForAuthorUrl() {
     message: 'Author\'s Homepage'
   }], function (props) {
     this.authorEmail = props.authorEmail;
-
-    cb();
-  }.bind(this));
-};
-
-NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
-  var cb = this.async();
-
-  this.prompt([{
-    name: 'useVagrant',
-    message: 'Would you like to generate a Vagrantfile?',
-    default: 'Y/n'
-  }], function (props) {
-    this.useVagrant = props.useVagrant;
 
     cb();
   }.bind(this));
