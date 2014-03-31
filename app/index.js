@@ -18,7 +18,7 @@ var NodeGenerator = module.exports = function NodeGenerator(args, options) {
 };
 util.inherits(NodeGenerator, yeoman.generators.NamedBase);
 
-Generator.prototype.welcome = function welcome() {
+NodeGenerator.prototype.welcome = function welcome() {
   console.log("this.name = ");
   console.log(this.name)
   console.log("this.options['name'] = ");
@@ -32,7 +32,7 @@ Generator.prototype.welcome = function welcome() {
   }
 };
 
-Generator.prototype.askForName = function askForName() {
+NodeGenerator.prototype.askForName = function askForName() {
   var cb = this.async();
 
   this.prompt([{
@@ -52,7 +52,7 @@ Generator.prototype.askForName = function askForName() {
   }.bind(this));
 };
 
-Generator.prototype.askForDescription = function askForDescription() {
+NodeGenerator.prototype.askForDescription = function askForDescription() {
   var cb = this.async();
 
   this.prompt([{
@@ -66,7 +66,7 @@ Generator.prototype.askForDescription = function askForDescription() {
   }.bind(this));
 };
 
-Generator.prototype.askForHomepage = function askForHomepage() {
+NodeGenerator.prototype.askForHomepage = function askForHomepage() {
   var cb = this.async();
 
   this.prompt([{
@@ -83,7 +83,7 @@ Generator.prototype.askForHomepage = function askForHomepage() {
   }.bind(this));
 };
 
-Generator.prototype.askForLicense = function askForLicense() {
+NodeGenerator.prototype.askForLicense = function askForLicense() {
   var cb = this.async();
 
   this.prompt([{
@@ -97,7 +97,7 @@ Generator.prototype.askForLicense = function askForLicense() {
   }.bind(this));
 };
 
-Generator.prototype.askForGithubUsername = function askForGithubUsername() {
+NodeGenerator.prototype.askForGithubUsername = function askForGithubUsername() {
   var cb = this.async();
 
   this.prompt([{
@@ -115,7 +115,7 @@ Generator.prototype.askForGithubUsername = function askForGithubUsername() {
   }.bind(this));
 };
 
-Generator.prototype.askForAuthorName = function askForAuthorName() {
+NodeGenerator.prototype.askForAuthorName = function askForAuthorName() {
   var cb = this.async();
 
   this.prompt([{
@@ -128,7 +128,7 @@ Generator.prototype.askForAuthorName = function askForAuthorName() {
   }.bind(this));
 };
 
-Generator.prototype.askForAuthorEmail = function askForAuthorEmail() {
+NodeGenerator.prototype.askForAuthorEmail = function askForAuthorEmail() {
   var cb = this.async();
 
   this.prompt([{
@@ -141,7 +141,7 @@ Generator.prototype.askForAuthorEmail = function askForAuthorEmail() {
   }.bind(this));
 };
 
-Generator.prototype.askForAuthorUrl = function askForAuthorUrl() {
+NodeGenerator.prototype.askForAuthorUrl = function askForAuthorUrl() {
   var cb = this.async();
 
   this.prompt([{
@@ -154,7 +154,7 @@ Generator.prototype.askForAuthorUrl = function askForAuthorUrl() {
   }.bind(this));
 };
 
-Generator.prototype.askForUseVagrant = function askForUseVagrant() {
+NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
   var cb = this.async();
 
   this.prompt([{
@@ -168,7 +168,7 @@ Generator.prototype.askForUseVagrant = function askForUseVagrant() {
   }.bind(this));
 };
 
-Generator.prototype.askForUsePassport = function askForUsePassport() {
+NodeGenerator.prototype.askForUsePassport = function askForUsePassport() {
   var cb = this.async();
 
   this.prompt([{
@@ -182,7 +182,7 @@ Generator.prototype.askForUsePassport = function askForUsePassport() {
   }.bind(this));
 };
 
-Generator.prototype.askForFacebookClientId = function askForFacebookClientId() {
+NodeGenerator.prototype.askForFacebookClientId = function askForFacebookClientId() {
   var cb = this.async();
 
   this.prompt([{
@@ -196,7 +196,7 @@ Generator.prototype.askForFacebookClientId = function askForFacebookClientId() {
   }.bind(this));
 };
 
-Generator.prototype.askForFacebookClientSecret = function askForFacebookClientSecret() {
+NodeGenerator.prototype.askForFacebookClientSecret = function askForFacebookClientSecret() {
   var cb = this.async();
 
   this.prompt([{
@@ -210,7 +210,7 @@ Generator.prototype.askForFacebookClientSecret = function askForFacebookClientSe
   }.bind(this));
 };
 
-Generator.prototype.askForTwitterConsumerKey = function askForTwitterConsumerKey() {
+NodeGenerator.prototype.askForTwitterConsumerKey = function askForTwitterConsumerKey() {
   var cb = this.async();
 
   this.prompt([{
@@ -224,7 +224,7 @@ Generator.prototype.askForTwitterConsumerKey = function askForTwitterConsumerKey
   }.bind(this));
 };
 
-Generator.prototype.askForTwitterConsumerSecret = function askForTwitterConsumerSecret() {
+NodeGenerator.prototype.askForTwitterConsumerSecret = function askForTwitterConsumerSecret() {
   var cb = this.async();
 
   this.prompt([{
@@ -238,7 +238,7 @@ Generator.prototype.askForTwitterConsumerSecret = function askForTwitterConsumer
   }.bind(this));
 };
 
-Generator.prototype.askForGoogleClientId = function askForGoogleClientId() {
+NodeGenerator.prototype.askForGoogleClientId = function askForGoogleClientId() {
   var cb = this.async();
 
   this.prompt([{
@@ -252,7 +252,7 @@ Generator.prototype.askForGoogleClientId = function askForGoogleClientId() {
   }.bind(this));
 };
 
-Generator.prototype.askForGoogleClientSecret = function askForGoogleClientSecret() {
+NodeGenerator.prototype.askForGoogleClientSecret = function askForGoogleClientSecret() {
   var cb = this.async();
 
   this.prompt([{
@@ -266,7 +266,7 @@ Generator.prototype.askForGoogleClientSecret = function askForGoogleClientSecret
   }.bind(this));
 };
 
-Generator.prototype.askForGithubClientId = function askForGithubClientId() {
+NodeGenerator.prototype.askForGithubClientId = function askForGithubClientId() {
   var cb = this.async();
 
   this.prompt([{
@@ -280,7 +280,7 @@ Generator.prototype.askForGithubClientId = function askForGithubClientId() {
   }.bind(this));
 };
 
-Generator.prototype.askForGithubClientSecret = function askForGithubClientSecret() {
+NodeGenerator.prototype.askForGithubClientSecret = function askForGithubClientSecret() {
   var cb = this.async();
 
   this.prompt([{
@@ -294,7 +294,7 @@ Generator.prototype.askForGithubClientSecret = function askForGithubClientSecret
   }.bind(this));
 };
 
-Generator.prototype.askForLinkedInKey = function askForLinkedInKey() {
+NodeGenerator.prototype.askForLinkedInKey = function askForLinkedInKey() {
   var cb = this.async();
 
   this.prompt([{
@@ -308,7 +308,7 @@ Generator.prototype.askForLinkedInKey = function askForLinkedInKey() {
   }.bind(this));
 };
 
-Generator.prototype.askForLinkedInSecret = function askForLinkedInSecret() {
+NodeGenerator.prototype.askForLinkedInSecret = function askForLinkedInSecret() {
   var cb = this.async();
 
   this.prompt([{
@@ -317,28 +317,6 @@ Generator.prototype.askForLinkedInSecret = function askForLinkedInSecret() {
     message: 'LinkedIn Secret'
   }], function (props) {
     this.linkedInSecret = props.linkedInSecret;
-
-    cb();
-  }.bind(this));
-};
-
-NodeGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
-
-  
-
-  var prompts = [, , , , , , , , , , , , , , , , , ,
-  ];
-
-  
-
-  this.prompt(prompts, function (props) {
-
-    
-
-    console.log(props)
-
-    this.props = props;
 
     cb();
   }.bind(this));
@@ -363,7 +341,6 @@ NodeGenerator.prototype.examples = function examples() {
     this.template('examples/passport_example.js', 'public/app/passport_example.html');
   }
 };
-
 
 NodeGenerator.prototype.config = function config() {
   if(/y/i.test(this.props.usePassport) === true){
