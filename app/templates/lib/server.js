@@ -1,5 +1,5 @@
 /*
- * <%= this.name %>
+ * <%= this.useVagrant %>
  * <%= this.homepage %>
  *
  * Copyright (c) <%= currentYear %> <%= this.authorName %>
