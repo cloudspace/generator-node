@@ -10,6 +10,7 @@
  * Licensed under the <%= license %> license.
  */
 
+<% console.log("useVagrant tests"); console.log(this.useVagrant); console.log(useVagrant) %>
 'use strict';
 
 var express = require('express')
@@ -38,7 +39,7 @@ app.configure(function(){
   app.use(express.session({ secret: 'gobbledygook' }));
 });
 
-<% if(/y/i.test(usePassport) === true){ %>
+<% if(/y/i.test(props.usePassport) === true){ %>
 // Load process.env variables
 env(__dirname + '/.env');
 
