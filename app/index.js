@@ -19,6 +19,10 @@ var NodeGenerator = module.exports = function NodeGenerator(args, options) {
 util.inherits(NodeGenerator, yeoman.generators.NamedBase);
 
 Generator.prototype.welcome = function welcome() {
+  console.log("this.name = ");
+  console.log(this.name)
+  console.log("this.options['name'] = ");
+  console.log(this.options['name'])
   // welcome message
   if (!this.options['skip-welcome-message']) {
     console.log(
