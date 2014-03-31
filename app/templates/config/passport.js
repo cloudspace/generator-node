@@ -43,19 +43,19 @@ module.exports = function(passport) {
     passport.deserializeUser(function(user, done) {
         done(null, user);
     });
-    <% if(props.facebook_client_id != "" && props.facebook_client_secret != ""){ %>
+    <% if(props.facebookClientId != "" && props.facebookClientSecret != ""){ %>
     passport.use(new FacebookStrategy(authConfig.facebook, verifyOauth2));
     <% } %>
-    <% if(props.twitter_consumer_key != "" && props.twitter_consumer_secret != ""){ %>
+    <% if(props.twitterConsumerKey != "" && props.twitterConsumerSecret != ""){ %>
     passport.use(new TwitterStrategy(authConfig.twitter, verifyTwitter))
     <% } %>
-    <% if(props.google_client_id != "" && props.google_client_secret != ""){ %>
+    <% if(props.googleClientId != "" && props.googleClientSecret != ""){ %>
     passport.use(new GoogleStrategy(authConfig.google, verifyOauth2));
     <% } %>
-    <% if(props.github_client_id != "" && props.github_client_secret != ""){ %>
+    <% if(props.githubClientId != "" && props.githubClientSecret != ""){ %>
     passport.use(new GitHubStrategy(authConfig.github, verifyOauth2));
     <% } %>
-    <% if(props.linkedin_key != "" && props.linkedin_secret != ""){ %>
+    <% if(props.linkedInKey != "" && props.linkedin_secret != ""){ %>
     passport.use(new LinkedInStrategy(authConfig.linkedin, verifyOauth2));
     <% } %>
 };

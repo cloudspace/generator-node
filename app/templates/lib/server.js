@@ -34,7 +34,7 @@ app.configure(function(){
   app.use(express.session({ secret: 'gobbledygook' }));
 });
 
-<% if(/y/i.test(props.use_passport) === true){ %>
+<% if(/y/i.test(props.usePassport) === true){ %>
 // Load process.env variables
 env(__dirname + '/.env');
 
