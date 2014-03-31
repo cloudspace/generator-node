@@ -28,299 +28,375 @@ NodeGenerator.prototype.welcome = function welcome() {
   }
 };
 
-NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
-  var cb = this.async();
-
-  console.log("this.useVagrant = ");
-  console.log(this.useVagrant)
-  console.log("this.options['useVagrant'] = ");
-  console.log(this.options['useVagrant'])
-
-  this.prompt([{
-    name: 'useVagrant',
-    message: 'Would you like to generate a Vagrantfile?',
-    default: 'Y/n'
-  }], function (props) {
-    this.useVagrant = props.useVagrant;
-
-    cb();
-  }.bind(this));
-};
-
 NodeGenerator.prototype.askForName = function askForName() {
-  var cb = this.async();
+  if(typeof(this.options['name']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return this.name != "" },
-    name: 'name',
-    message: 'Module Name',
-    default: path.basename(process.cwd())
-  }], function (props) {
-    this.slugname = this._.slugify(props.name);
-    this.safeSlugname = this.slugname.replace(
-      /-([a-z])/g,
-      function (g) { return g[1].toUpperCase(); }
-    );
-    this.name = props.name;
+    this.prompt([{
+      when: function(props) { return this.name != "" },
+      name: 'name',
+      message: 'Module Name',
+      default: path.basename(process.cwd())
+    }], function (props) {
+      this.name = props.name;
+      cb();
+    }.bind(this));
+  } else {
+    this.name = this.options['name'];
+  }
 
-    cb();
-  }.bind(this));
+  this.slugname = this._.slugify(props.name);
+  this.safeSlugname = this.slugname.replace(
+    /-([a-z])/g,
+    function (g) { return g[1].toUpperCase(); }
+  );
 };
 
 NodeGenerator.prototype.askForDescription = function askForDescription() {
-  var cb = this.async();
+  if(typeof(this.options['description']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'description',
-    message: 'Description',
-    default: 'The best module ever.'
-  }], function (props) {
-    this.description = props.description;
+    this.prompt([{
+      name: 'description',
+      message: 'Description',
+      default: 'The best module ever.'
+    }], function (props) {
+      this.description = props.description;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.description = this.options['description'];
+  }
 };
 
 NodeGenerator.prototype.askForHomepage = function askForHomepage() {
-  var cb = this.async();
+  if(typeof(this.options['homepage']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'homepage',
-    message: 'Homepage'
-  }], function (props) {
-    if (!props.homepage) {
-      props.homepage = this.repoUrl;
-    }
+    this.prompt([{
+      name: 'homepage',
+      message: 'Homepage'
+    }], function (props) {
+      if (!props.homepage) {
+        props.homepage = this.repoUrl;
+      }
 
-    this.homepage = props.homepage;
+      this.homepage = props.homepage;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.homepage = this.options['homepage'];
+  }
 };
 
 NodeGenerator.prototype.askForLicense = function askForLicense() {
-  var cb = this.async();
+  if(typeof(this.options['license']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'license',
-    message: 'License',
-    default: 'MIT'
-  }], function (props) {
-    this.license = props.license;
+    this.prompt([{
+      name: 'license',
+      message: 'License',
+      default: 'MIT'
+    }], function (props) {
+      this.license = props.license;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.license = this.options['license'];
+  }
 };
 
 NodeGenerator.prototype.askForGithubUsername = function askForGithubUsername() {
-  var cb = this.async();
+  if(typeof(this.options['githubUsername']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'githubUsername',
-    message: 'GitHub username'
-  }], function (props) {
-    if(!props.githubUsername){
-      this.repoUrl = 'https://github.com/' + props.githubUsername + '/' + this.slugname;
-    } else {
-      this.repoUrl = 'user/repo';
-    }
-    this.githubUsername = props.githubUsername;
+    this.prompt([{
+      name: 'githubUsername',
+      message: 'GitHub username'
+    }], function (props) {
+      if(!props.githubUsername){
+        this.repoUrl = 'https://github.com/' + props.githubUsername + '/' + this.slugname;
+      } else {
+        this.repoUrl = 'user/repo';
+      }
+      this.githubUsername = props.githubUsername;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.repoUrl = 'https://github.com/' + this.options['githubUsername'] + '/' + this.slugname;
+    this.githubUsername = this.options['githubUsername'];
+  }
 };
 
 NodeGenerator.prototype.askForAuthorName = function askForAuthorName() {
-  var cb = this.async();
+  if(typeof(this.options['authorName']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'authorName',
-    message: 'Author\'s Name'
-  }], function (props) {
-    this.authorName = props.authorName;
+    this.prompt([{
+      name: 'authorName',
+      message: 'Author\'s Name'
+    }], function (props) {
+      this.authorName = props.authorName;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.authorName = this.options['authorName'];
+  }
 };
 
 NodeGenerator.prototype.askForAuthorEmail = function askForAuthorEmail() {
-  var cb = this.async();
+  if(typeof(this.options['authorEmail']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'authorEmail',
-    message: 'Author\'s Email'
-  }], function (props) {
-    this.authorEmail = props.authorEmail;
+    this.prompt([{
+      name: 'authorEmail',
+      message: 'Author\'s Email'
+    }], function (props) {
+      this.authorEmail = props.authorEmail;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.authorEmail = this.options['authorEmail'];
+  }
 };
 
 NodeGenerator.prototype.askForAuthorUrl = function askForAuthorUrl() {
-  var cb = this.async();
+  if(typeof(this.options['authorUrl']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'authorUrl',
-    message: 'Author\'s Homepage'
-  }], function (props) {
-    this.authorEmail = props.authorEmail;
+    this.prompt([{
+      name: 'authorUrl',
+      message: 'Author\'s Homepage'
+    }], function (props) {
+      this.authorEmail = props.authorEmail;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.authorUrl = this.options['authorUrl'];
+  }
+};
+
+NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
+  
+  if(typeof(this.options['useVagrant']) == undefined){
+    var cb = this.async();
+    this.prompt([{
+      name: 'useVagrant',
+      message: 'Would you like to generate a Vagrantfile?',
+      default: 'Y/n'
+    }], function (props) {
+      this.useVagrant = props.useVagrant;
+
+      cb();
+    }.bind(this));
+  } else {
+    this.useVagrant = this.options['useVagrant'];
+  }
 };
 
 NodeGenerator.prototype.askForUsePassport = function askForUsePassport() {
-  var cb = this.async();
+  if(typeof(this.options['usePassport']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    name: 'usePassport',
-    message: 'Would you like to use passport for 3rd party authentication?',
-    default: 'Y/n'
-  }], function (props) {
-    this.usePassport = props.usePassport;
+    this.prompt([{
+      name: 'usePassport',
+      message: 'Would you like to use passport for 3rd party authentication?',
+      default: 'Y/n'
+    }], function (props) {
+      this.usePassport = props.usePassport;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.usePassport = this.options['usePassport'];
+  }
 };
 
 NodeGenerator.prototype.askForFacebookClientId = function askForFacebookClientId() {
-  var cb = this.async();
+  if(typeof(this.options['facebookClientId']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'facebookClientId',
-    message: 'Facebook Key'
-  }], function (props) {
-    this.askForFacebookClientId = props.askForFacebookClientId;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'facebookClientId',
+      message: 'Facebook Key'
+    }], function (props) {
+      this.askForFacebookClientId = props.askForFacebookClientId;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.facebookClientId = this.options['facebookClientId'];
+  }
 };
 
 NodeGenerator.prototype.askForFacebookClientSecret = function askForFacebookClientSecret() {
-  var cb = this.async();
+  if(typeof(this.options['facebookClientSecret']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'facebookClientSecret',
-    message: 'Facebook Secret'
-  }], function (props) {
-    this.askForFacebookClientSecret = props.askForFacebookClientSecret;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'facebookClientSecret',
+      message: 'Facebook Secret'
+    }], function (props) {
+      this.askForFacebookClientSecret = props.askForFacebookClientSecret;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.facebookClientSecret = this.options['facebookClientSecret'];
+  }
 };
 
 NodeGenerator.prototype.askForTwitterConsumerKey = function askForTwitterConsumerKey() {
-  var cb = this.async();
+  if(typeof(this.options['twitterConsumerKey']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'twitterConsumerKey',
-    message: 'Twitter Key'
-  }], function (props) {
-    this.twitterConsumerKey = props.twitterConsumerKey;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'twitterConsumerKey',
+      message: 'Twitter Key'
+    }], function (props) {
+      this.twitterConsumerKey = props.twitterConsumerKey;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.twitterConsumerKey = this.options['twitterConsumerKey'];
+  }
 };
 
 NodeGenerator.prototype.askForTwitterConsumerSecret = function askForTwitterConsumerSecret() {
-  var cb = this.async();
+  if(typeof(this.options['twitterConsumerSecret']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'twitterConsumerSecret',
-    message: 'Twitter Secret'
-  }], function (props) {
-    this.twitterConsumerSecret = props.twitterConsumerSecret;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'twitterConsumerSecret',
+      message: 'Twitter Secret'
+    }], function (props) {
+      this.twitterConsumerSecret = props.twitterConsumerSecret;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.twitterConsumerSecret = this.options['twitterConsumerSecret'];
+  }
 };
 
 NodeGenerator.prototype.askForGoogleClientId = function askForGoogleClientId() {
-  var cb = this.async();
+  if(typeof(this.options['googleClientId']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'googleClientId',
-    message: 'Google Key'
-  }], function (props) {
-    this.googleClientId = props.googleClientId;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'googleClientId',
+      message: 'Google Key'
+    }], function (props) {
+      this.googleClientId = props.googleClientId;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.googleClientId = this.options['googleClientId'];
+  }
 };
 
 NodeGenerator.prototype.askForGoogleClientSecret = function askForGoogleClientSecret() {
-  var cb = this.async();
+  if(typeof(this.options['googleClientSecret']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'googleClientSecret',
-    message: 'Google Secret'
-  }], function (props) {
-    this.googleClientSecret = props.googleClientSecret;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'googleClientSecret',
+      message: 'Google Secret'
+    }], function (props) {
+      this.googleClientSecret = props.googleClientSecret;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.googleClientSecret = this.options['googleClientSecret'];
+  }
 };
 
 NodeGenerator.prototype.askForGithubClientId = function askForGithubClientId() {
-  var cb = this.async();
+  if(typeof(this.options['githubClientId']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'githubClientId',
-    message: 'Github Key'
-  }], function (props) {
-    this.githubClientId = props.githubClientId;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'githubClientId',
+      message: 'Github Key'
+    }], function (props) {
+      this.githubClientId = props.githubClientId;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.githubClientId = this.options['githubClientId'];
+  }
 };
 
 NodeGenerator.prototype.askForGithubClientSecret = function askForGithubClientSecret() {
-  var cb = this.async();
+  if(typeof(this.options['githubClientSecret']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'githubClientSecret',
-    message: 'Github Secret'
-  }], function (props) {
-    this.githubClientSecret = props.githubClientSecret;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'githubClientSecret',
+      message: 'Github Secret'
+    }], function (props) {
+      this.githubClientSecret = props.githubClientSecret;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.githubClientSecret = this.options['githubClientSecret'];
+  }
 };
 
 NodeGenerator.prototype.askForLinkedInKey = function askForLinkedInKey() {
-  var cb = this.async();
+  if(typeof(this.options['linkedInKey']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'linkedInKey',
-    message: 'LinkedIn Key'
-  }], function (props) {
-    this.linkedInKey = props.linkedInKey;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'linkedInKey',
+      message: 'LinkedIn Key'
+    }], function (props) {
+      this.linkedInKey = props.linkedInKey;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.linkedInKey = this.options['linkedInKey'];
+  }
 };
 
 NodeGenerator.prototype.askForLinkedInSecret = function askForLinkedInSecret() {
-  var cb = this.async();
+  if(typeof(this.options['linkedInSecret']) == undefined){
+    var cb = this.async();
 
-  this.prompt([{
-    when: function(props) { return (/y/i).test(props.usePassport); },
-    name: 'linkedInSecret',
-    message: 'LinkedIn Secret'
-  }], function (props) {
-    this.linkedInSecret = props.linkedInSecret;
+    this.prompt([{
+      when: function(props) { return (/y/i).test(props.usePassport); },
+      name: 'linkedInSecret',
+      message: 'LinkedIn Secret'
+    }], function (props) {
+      this.linkedInSecret = props.linkedInSecret;
 
-    cb();
-  }.bind(this));
+      cb();
+    }.bind(this));
+  } else {
+    this.useVagrant = this.options['linkedInSecret'];
+  }
 };
 
 NodeGenerator.prototype.lib = function lib() {
