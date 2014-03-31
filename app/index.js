@@ -43,9 +43,10 @@ NodeGenerator.prototype.askForName = function askForName() {
     }.bind(this));
   } else {
     this.name = this.options['name'];
+    props.name = this.options['name'];
   }
 
-  this.slugname = this._.slugify(this.name);
+  this.slugname = this._.slugify(props.name);
   this.safeSlugname = this.slugname.replace(
     /-([a-z])/g,
     function (g) { return g[1].toUpperCase(); }
@@ -402,7 +403,7 @@ NodeGenerator.prototype.askForLinkedInSecret = function askForLinkedInSecret() {
 NodeGenerator.prototype.lib = function lib() {
   this.mkdir('lib');
   this.template('lib/server.js', 'server.js');
-  if(/y/i.test(this.usePassport) === true){
+  if(/y/i.test(this.props.usePassport) === true){
     this.template('lib/.env.js', '.env');
   }
 };
@@ -414,13 +415,13 @@ NodeGenerator.prototype.lib = function lib() {
 // };
 
 NodeGenerator.prototype.examples = function examples() {
-  if(/y/i.test(this.usePassport) === true){
+  if(/y/i.test(this.props.usePassport) === true){
     this.template('examples/passport_example.js', 'public/app/passport_example.html');
   }
 };
 
 NodeGenerator.prototype.config = function config() {
-  if(/y/i.test(this.usePassport) === true){
+  if(/y/i.test(this.props.usePassport) === true){
     this.mkdir('config');
     this.template('config/passport.js', 'config/passport.js');
     this.template('config/routes.js', 'config/routes.js');
@@ -438,7 +439,7 @@ NodeGenerator.prototype.projectfiles = function projectfiles() {
 };
 
 NodeGenerator.prototype.vagrant = function vagrant() {
-  if(/y/i.test(this.useVagrant) === true){
+  if(/y/i.test(this.props.useVagrant) === true){
     this.template('vagrant/vagrantfile.js', 'Vagrantfile');
     this.template('vagrant/cheffile.js', 'Cheffile');
   }

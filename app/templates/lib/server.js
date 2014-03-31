@@ -1,9 +1,9 @@
 /*
- * <%= this.useVagrant %>
- * <%= this.homepage %>
+ * <%= props.name %>
+ * <%= props.homepage %>
  *
- * Copyright (c) <%= currentYear %> <%= this.authorName %>
- * Licensed under the <%= this.license %> license.
+ * Copyright (c) <%= currentYear %> <%= props.authorName %>
+ * Licensed under the <%= props.license %> license.
  */
 
 'use strict';
@@ -34,7 +34,7 @@ app.configure(function(){
   app.use(express.session({ secret: 'gobbledygook' }));
 });
 
-<% if(/y/i.test(this.usePassport) === true){ %>
+<% if(/y/i.test(props.usePassport) === true){ %>
 // Load process.env variables
 env(__dirname + '/.env');
 
