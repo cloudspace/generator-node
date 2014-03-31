@@ -45,7 +45,7 @@ NodeGenerator.prototype.askForName = function askForName() {
     this.name = this.options['name'];
   }
 
-  this.slugname = this._.slugify(props.name);
+  this.slugname = this._.slugify(this.name);
   this.safeSlugname = this.slugname.replace(
     /-([a-z])/g,
     function (g) { return g[1].toUpperCase(); }
