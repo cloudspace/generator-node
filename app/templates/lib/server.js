@@ -1,11 +1,10 @@
 /*
- * <%= props.name %>
  * <%= 1 %>
- * <%= this.name %>
+ * <%= this.useVagrant %>
  * <%= 2 %>
- * <%= name %>
+ * <%= useVagrant %>
  * <%= 3 %>
- * <%= props.homepage %>
+ * <%= homepage %>
  *
  * Copyright (c) <%= currentYear %> <%= props.authorName %>
  * Licensed under the <%= props.license %> license.
