@@ -1,5 +1,10 @@
 /*
  * <%= props.name %>
+ * <%= 1 %>
+ * <%= this.name %>
+ * <%= 2 %>
+ * <%= name %>
+ * <%= 3 %>
  * <%= props.homepage %>
  *
  * Copyright (c) <%= currentYear %> <%= props.authorName %>

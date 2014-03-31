@@ -43,7 +43,6 @@ NodeGenerator.prototype.askForName = function askForName() {
     }.bind(this));
   } else {
     this.name = this.options['name'];
-    props.name = this.options['name'];
   }
 
   this.slugname = this._.slugify(props.name);
