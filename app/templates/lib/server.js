@@ -1,17 +1,10 @@
 /*
- * <%= 1 %>
- * <%= this.useVagrant %>
- * <%= 2 %>
- * <%= useVagrant %>
- * <%= 3 %>
+ * <%= name %>
  * <%= homepage %>
  *
  * Copyright (c) <%= currentYear %> <%= authorName %>
  * Licensed under the <%= license %> license.
  */
-
-<% console.log("useVagrant: this.useVagrant"); console.log(this.useVagrant); console.log("useVagrant: useVagrant"); console.log(useVagrant) %>
-'use strict';
 
 var express = require('express')
   , http = require('http')
@@ -39,7 +32,7 @@ app.configure(function(){
   app.use(express.session({ secret: 'gobbledygook' }));
 });
 
-<% if(/y/i.test(props.usePassport) === true){ %>
+<% if(/y/i.test(usePassport) === true){ %>
 // Load process.env variables
 env(__dirname + '/.env');
 

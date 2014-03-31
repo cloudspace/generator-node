@@ -1,23 +1,23 @@
 # 3rd Party Env Variables
 # Be sure your URLs on the 3rd Party App Settings are correct to your setup
 
-<% if(props.facebookClientId != "" && props.facebookClientSecret != ""){ %>
-FACEBOOK_CLIENT_ID=<%= props.facebookClientId %>
-FACEBOOK_CLIENT_SECRET=<%= props.facebookClientSecret %>
+<% if(facebookClientId != "" && facebookClientSecret != ""){ %>
+FACEBOOK_CLIENT_ID=<%= facebookClientId %>
+FACEBOOK_CLIENT_SECRET=<%= facebookClientSecret %>
 <% } %>
-<% if(props.twitterConsumerKey != "" && props.twitterConsumerSecret != ""){ %>
-TWITTER_CONSUMER_KEY=<%= props.twitterConsumerKey %>
-TWITTER_CONSUMER_SECRET=<%= props.twitterConsumerSecret %>
+<% if(twitterConsumerKey != "" && twitterConsumerSecret != ""){ %>
+TWITTER_CONSUMER_KEY=<%= twitterConsumerKey %>
+TWITTER_CONSUMER_SECRET=<%= twitterConsumerSecret %>
 <% } %>
-<% if(props.googleClientId != "" && props.googleClientSecret != ""){ %>
-GOOGLE_CLIENT_ID=<%= props.googleClientId %>
-GOOGLE_CLIENT_SECRET=<%= props.googleClientSecret %>
+<% if(googleClientId != "" && googleClientSecret != ""){ %>
+GOOGLE_CLIENT_ID=<%= googleClientId %>
+GOOGLE_CLIENT_SECRET=<%= googleClientSecret %>
 <% } %>
-<% if(props.githubClientId != "" && props.githubClientSecret != ""){ %>
-GITHUB_CLIENT_ID=<%= props.githubClientId %>
-GITHUB_CLIENT_SECRET=<%= props.githubClientSecret %>
+<% if(githubClientId != "" && githubClientSecret != ""){ %>
+GITHUB_CLIENT_ID=<%= githubClientId %>
+GITHUB_CLIENT_SECRET=<%= githubClientSecret %>
 <% } %>
-<% if(props.linkedInKey != "" && props.linkedin_secret != ""){ %>
-LINKEDIN_KEY=<%= props.linkedInKey %>
-LINKEDIN_SECRET=<%= props.linkedin_secret %>
+<% if(linkedInKey != "" && linkedin_secret != ""){ %>
+LINKEDIN_KEY=<%= linkedInKey %>
+LINKEDIN_SECRET=<%= linkedin_secret %>
 <% } %>

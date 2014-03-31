@@ -2,13 +2,13 @@
   "name": "<%= slugname %>",
   "version": "0.0.0",
   "main": "lib/<%= slugname %>.js",
-  "description": "<%= props.description %>",<% if (props.homepage) { %>
-  "homepage": "<%= props.homepage %>",<%}%>
+  "description": "<%= description %>",<% if (homepage) { %>
+  "homepage": "<%= homepage %>",<%}%>
   "bugs": "<%= repoUrl %>/issues",
   "author": {
-    "name": "<%= props.authorName %>",
-    "email": "<%= props.authorEmail %>"<% if (props.authorUrl) { %>,
-    "url": "<%= props.authorUrl %>"<% } %>
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>"<% if (authorUrl) { %>,
+    "url": "<%= authorUrl %>"<% } %>
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   },
   "licenses": [
     {
-      "type": "<%= props.license %>"
+      "type": "<%= license %>"
     }
   ],
   "files": [
