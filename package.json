@@ -7,8 +7,8 @@
     "scaffold",
     "node"
   ],
-  "homepage": "https://github.com/yeoman/generator-node",
-  "bugs": "https://github.com/yeoman/generator-node/issues",
+  "homepage": "https://github.com/cloudspace/generator-node",
+  "bugs": "https://github.com/cloudspace/generator-node/issues",
   "author": {
     "name": "Addy Osmani",
     "email": "addyosmani@gmail.com",
@@ -17,7 +17,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yeoman/generator-node.git"
+    "url": "https://github.com/cloudspace/generator-node.git"
   },
   "scripts": {
     "test": "mocha"
