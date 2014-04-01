@@ -184,7 +184,7 @@ NodeGenerator.prototype.askForAuthorUrl = function askForAuthorUrl() {
 };
 
 NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
-  
+
   if(typeof(this.options['useVagrant']) == undefined){
     var cb = this.async();
     this.prompt([{
@@ -403,7 +403,7 @@ NodeGenerator.prototype.lib = function lib() {
   this.mkdir('lib');
   this.template('lib/server.js', 'server.js');
   if(/y/i.test(this.usePassport) === true){
-    this.template('lib/.env.js', '.env');
+    this.template('lib/_env', '.env');
   }
 };
 
@@ -415,7 +415,7 @@ NodeGenerator.prototype.lib = function lib() {
 
 NodeGenerator.prototype.examples = function examples() {
   if(/y/i.test(this.usePassport) === true){
-    this.template('examples/passport_example.js', 'public/app/passport_example.html');
+    this.template('examples/passport_example.html', 'public/app/passport_example.html');
   }
 };
 
@@ -428,9 +428,9 @@ NodeGenerator.prototype.config = function config() {
 }
 
 NodeGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('jshintrc', '.jshintrc');
-  this.copy('gitignore', '.gitignore');
-  this.copy('travis.yml', '.travis.yml');
+  this.copy('_jshintrc', '.jshintrc');
+  this.copy('_gitignore', '.gitignore');
+  this.copy('_travis.yml', '.travis.yml');
 
   this.template('README.md');
   this.template('Gruntfile.js');
@@ -439,7 +439,7 @@ NodeGenerator.prototype.projectfiles = function projectfiles() {
 
 NodeGenerator.prototype.vagrant = function vagrant() {
   if(/y/i.test(this.useVagrant) === true){
-    this.template('vagrant/vagrantfile.js', 'Vagrantfile');
-    this.template('vagrant/cheffile.js', 'Cheffile');
+    this.template('vagrant/Vagrantfile', 'Vagrantfile');
+    this.template('vagrant/Cheffile', 'Cheffile');
   }
 };

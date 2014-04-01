@@ -12,11 +12,11 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "33.33.33.71"
 
   config.vm.synced_folder ".", "/srv/#{org}", type: "nfs"
-  
+
   config.vm.provider "virtualbox" do |v|
     v.customize ["modifyvm", :id, "--memory", "2048", "--name", "#{org}","--cpus", "2"]
   end
-  
+
   config.vm.provision :chef_solo do |chef|
 
     chef.node_name = "\#{org}_vagrant_\#{ENV['USER']}"
@@ -35,7 +35,7 @@ Vagrant.configure(2) do |config|
         },
         :pg_hba => [
           {
-            :comment => '# User For Rails Development', 
+            :comment => '# User For Rails Development',
             :type => 'host',
             :db => 'all',
             :user => 'all',
