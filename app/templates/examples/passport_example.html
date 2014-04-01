@@ -4,20 +4,20 @@
     <h2>Passport Example</h2>
     <p>All the generator does for now is return the json response after auth.</p>
     <div>
-      <% if(facebookClientId != "" && facebookClientSecret != ""){ %>
+      <% if(useFacebook) { %>
       <p>Log in with <a href="/auth/facebook/">Facebook</a></p>
       <% } %>
-      <% if(googleClientId != "" && googleClientSecret != ""){ %>
+      <% if(useGoogle) { %>
       <p>Log in with <a href="/auth/google/">Google</a></p>
       <% } %>
-      <% if(githubClientId != "" && githubClientSecret != ""){ %>
+      <% if(useGithub) { %>
       <p>Log in with <a href="/auth/github/">GitHub</a></p>
       <% } %>
-      <% if(twitterConsumerKey != "" && twitterConsumerSecret != ""){ %>
-      <p>Log in with <a href="/auth/twitter/">Twitter</a></p> 
+      <% if(useTwitter) { %>
+      <p>Log in with <a href="/auth/twitter/">Twitter</a></p>
       <% } %>
-      <% if(linkedInKey != "" && linkedin_secret != ""){ %>
-      <p>Log in with <a href="/auth/linkedin/">LinkedIn</a></p> 
+      <% if(useLinkedIn) { %>
+      <p>Log in with <a href="/auth/linkedin/">LinkedIn</a></p>
       <% } %>
       <br /><br />
       <p><a href="/profile">Profile</a></p>

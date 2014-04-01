@@ -1,9 +1,9 @@
 /*
- * <%= name %>
- * <%= homepage %>
+ * <%= props.name %>
+ * <%= props.homepage %>
  *
- * Copyright (c) <%= currentYear %> <%= authorName %>
- * Licensed under the <%= license %> license.
+ * Copyright (c) <%= currentYear %> <%= props.authorName %>
+ * Licensed under the <%= props.license %> license.
  */
 
 var express = require('express')
@@ -19,7 +19,7 @@ var express = require('express')
 
 var app = express();
 
-app.configure(function(){
+app.configure(function() {
   // Basics
   app.set('port', 80);
   app.use(prerenderer({targetGenerator: 'googlebot'}));
@@ -32,7 +32,7 @@ app.configure(function(){
   app.use(express.session({ secret: 'gobbledygook' }));
 });
 
-<% if(/y/i.test(usePassport) === true){ %>
+<% if(usePassport) { %>
 // Load process.env variables
 env(__dirname + '/.env');
 
@@ -46,6 +46,6 @@ app.use(app.router);
 require('./config/routes')(app, passport);
 <% } %>
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
 });

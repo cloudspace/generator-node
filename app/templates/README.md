@@ -1,6 +1,6 @@
-# <%= name %> [![Build Status](https://secure.travis-ci.org/<%= githubUsername %>/<%= slugname %>.png?branch=master)](http://travis-ci.org/<%= githubUsername %>/<%= slugname %>)
+# <%= props.name %> [![Build Status](https://secure.travis-ci.org/<%= props.githubUsername %>/<%= slugname %>.png?branch=master)](http://travis-ci.org/<%= props.githubUsername %>/<%= slugname %>)
 
-<%= description %>
+<%= props.description %>
 
 ## Getting Started
 Install the module with: `npm install <%= slugname %>`
@@ -23,4 +23,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) <%= currentYear %> <%= authorName %>. Licensed under the <%= license %> license.
+Copyright (c) <%= currentYear %> <%= props.authorName %>. Licensed under the <%= props.license %> license.

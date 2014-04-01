@@ -1,36 +1,46 @@
-var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google-oauth').Strategy;
-var GitHubStrategy = require('passport-github').Strategy;
-var TwitterStrategy = require('passport-twitter').Strategy;
-var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+<% if(useFacebook) { %>var FacebookStrategy = require('passport-facebook').Strategy;<% } %>
+<% if(useGoogle) { %>var GoogleStrategy = require('passport-google-oauth').Strategy;<% } %>
+<% if(useGithub) { %>var GitHubStrategy = require('passport-github').Strategy;<% } %>
+<% if(useTwitter) { %>var TwitterStrategy = require('passport-twitter').Strategy;<% } %>
+<% if(useLinkedIn) { %>var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;<% } %>
 
 var authConfig = {
+  <% if(useFacebook) { %>
     facebook: {
         clientID     : '' || process.env.FACEBOOK_CLIENT_ID,
         clientSecret : '' || process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL  : '/auth/facebook/callback'
     },
+  <% } %>
+  <% if(useGoogle) { %>
     google: {
         clientID     : '' || process.env.GOOGLE_CLIENT_ID,
         clientSecret : '' || process.env.GOOGLE_CLIENT_SECRET,
         callbackURL  : '/auth/google/callback'
     },
+  <% } %>
+  <% if(useGithub) { %>
     github: {
         clientID     : '' || process.env.GITHUB_CLIENT_ID,
         clientSecret : '' || process.env.GITHUB_CLIENT_SECRET,
         callbackURL  : '/auth/github/callback'
     },
+  <% } %>
+  <% if(useTwitter) { %>
     twitter: {
         consumerKey    : '' || process.env.TWITTER_CONSUMER_KEY,
         consumerSecret : '' || process.env.TWITTER_CONSUMER_SECRET,
         callbackURL    : '/auth/twitter/callback'
     },
+  <% } %>
+  <% if(useLinkedIn) { %>
     linkedin: {
-        clientID     : '' || process.env.LINKEDIN_KEY,
-        clientSecret : '' || process.env.LINKEDIN_SECRET,
+        clientID     : '' || process.env.LINKEDIN_CLIENT_ID,
+        clientSecret : '' || process.env.LINKEDIN_CLIENT_SECRET,
         callbackURL    : '/auth/linkedin/callback',
         scope: ['r_emailaddress', 'r_basicprofile'],
     }
+  <% } %>
 };
 
 module.exports = function(passport) {
@@ -43,23 +53,24 @@ module.exports = function(passport) {
     passport.deserializeUser(function(user, done) {
         done(null, user);
     });
-    <% if(facebookClientId != "" && facebookClientSecret != ""){ %>
+    <% if(useFacebook) { %>
     passport.use(new FacebookStrategy(authConfig.facebook, verifyOauth2));
     <% } %>
-    <% if(twitterConsumerKey != "" && twitterConsumerSecret != ""){ %>
-    passport.use(new TwitterStrategy(authConfig.twitter, verifyTwitter))
+    <% if(useTwitter) { %>
+    passport.use(new TwitterStrategy(authConfig.twitter, verifyOauth1))
     <% } %>
-    <% if(googleClientId != "" && googleClientSecret != ""){ %>
+    <% if(useGoogle) { %>
     passport.use(new GoogleStrategy(authConfig.google, verifyOauth2));
     <% } %>
-    <% if(githubClientId != "" && githubClientSecret != ""){ %>
+    <% if(useGoogle) { %>
     passport.use(new GitHubStrategy(authConfig.github, verifyOauth2));
     <% } %>
-    <% if(linkedInKey != "" && linkedin_secret != ""){ %>
+    <% if(useLinkedIn) { %>
     passport.use(new LinkedInStrategy(authConfig.linkedin, verifyOauth2));
     <% } %>
 };
 
+<% if(useFacebook || useGoogle || useGithub || useLinkedIn) { %>
 // This is generic across Oauth2 Providers
 function verifyOauth2(access_token, refresh_token, profile, done) {
     // asynchronous
@@ -82,8 +93,10 @@ function verifyOauth2(access_token, refresh_token, profile, done) {
         // return done(err);
     });
 }
+<% } %>
 
-function verifyTwitter(token, tokenSecret, profile, done) {
+<% if(useTwitter) { %>
+function verifyOauth1(token, tokenSecret, profile, done) {
     // asynchronous
     process.nextTick(function() {
         user = {};
@@ -103,3 +116,4 @@ function verifyTwitter(token, tokenSecret, profile, done) {
         // return done(err);
     });
 }
+<% } %>

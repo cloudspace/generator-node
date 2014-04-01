@@ -2,13 +2,13 @@
   "name": "<%= slugname %>",
   "version": "0.0.0",
   "main": "lib/<%= slugname %>.js",
-  "description": "<%= description %>",<% if (homepage) { %>
-  "homepage": "<%= homepage %>",<%}%>
+  "description": "<%= props.description %>",<% if (props.homepage) { %>
+  "homepage": "<%= props.homepage %>",<%}%>
   "bugs": "<%= repoUrl %>/issues",
   "author": {
-    "name": "<%= authorName %>",
-    "email": "<%= authorEmail %>"<% if (authorUrl) { %>,
-    "url": "<%= authorUrl %>"<% } %>
+    "name": "<%= props.authorName %>",
+    "email": "<%= props.authorEmail %>"<% if (props.authorUrl) { %>,
+    "url": "<%= props.authorUrl %>"<% } %>
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   },
   "licenses": [
     {
-      "type": "<%= license %>"
+      "type": "<%= props.license %>"
     }
   ],
   "files": [
@@ -32,14 +32,14 @@
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
-    "ejs": "~0.8.5",
-    "passport": "~0.2.0",
-    "passport-facebook": "~1.0.3",
-    "passport-twitter": "^1.0.2",
-    "passport-google-oauth": "^0.1.5",
-    "passport-github": "^0.1.5",
-    "passport-linkedin-oauth2": "^1.1.1",
-    "node-env-file": "^0.1.0"
+    "ejs": "~0.8.5"<% if (usePassport) { %>,
+    "passport": "~0.2.0"<% if (useFacebook) { %>,
+    "passport-facebook": "~1.0.3"<% } %><% if (useTwitter) { %>,
+    "passport-twitter": "^1.0.2"<% } %><% if (useGoogle) { %>,
+    "passport-google-oauth": "^0.1.5"<% } %><% if (useGithub) { %>,
+    "passport-github": "^0.1.5"<% } %><% if (useLinkedIn) { %>,
+    "passport-linkedin-oauth2": "^1.1.1"<% } %>,
+    "node-env-file": "^0.1.0"<% } %>
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",
