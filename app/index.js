@@ -3,6 +3,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var nopt = require('nopt');
 
 var NodeGenerator = module.exports = function NodeGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -15,17 +16,101 @@ var NodeGenerator = module.exports = function NodeGenerator(args, options) {
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+
+  this.option('name', {
+    type: String,
+    defaults: null
+  });
+  this.option('description', {
+    type: String,
+    defaults: null
+  });
+  this.option('homepage', {
+    type: String,
+    defaults: null
+  });
+  this.option('license', {
+    type: String,
+    defaults: null
+  });
+  this.option('githubUsername', {
+    type: String,
+    defaults: null
+  });
+  this.option('authorName', {
+    type: String,
+    defaults: null
+  });
+  this.option('authorEmail', {
+    type: String,
+    defaults: null
+  });
+  this.option('authorUrl', {
+    type: String,
+    defaults: null
+  });
+  this.option('facebookClientId', {
+    type: String,
+    defaults: null
+  });
+  this.option('facebookClientSecret', {
+    type: String,
+    defaults: null
+  });
+  this.option('googleClientId', {
+    type: String,
+    defaults: null
+  });
+  this.option('googleClientSecret', {
+    type: String,
+    defaults: null
+  });
+  this.option('githubClientId', {
+    type: String,
+    defaults: null
+  });
+  this.option('githubClientSecret', {
+    type: String,
+    defaults: null
+  });
+  this.option('linkedInClientId', {
+    type: String,
+    defaults: null
+  });
+  this.option('linkedInClientSecret', {
+    type: String,
+    defaults: null
+  });
+  this.option('twitterConsumerKey', {
+    type: String,
+    defaults: null
+  });
+  this.option('twitterConsumerSecret', {
+    type: String,
+    defaults: null
+  });
+
+  this._.extend(this.options, nopt(this._.reduce(this._options, function(memo, option) {
+    memo[option.name] = option.type;
+    return memo;
+  }, {})));
+
+  this.args = args = this.options.argv.remain;
+  args.shift();
 };
 util.inherits(NodeGenerator, yeoman.generators.NamedBase);
 
 NodeGenerator.prototype.prompt = function(questions, callback) {
   var generator = this;
   var answers = this._.reduce(questions, function(memo, question) {
-    if (generator.options.hasOwnProperty(question.name)) {
-      memo[question.name] = generator.options[question.name];
+    var name = question.name;
+    var option = this._.findWhere(this._options, {name: name});
+    if ((!option && this.options.hasOwnProperty(name)) ||
+        (option && this.options[name] !== option.defaults)) {
+      memo[name] = this.options[name];
     }
     return memo;
-  }, {});
+  }, {}, this);
   var qs = this._.reject(questions, function(question) {
     return answers.hasOwnProperty(question.name);
   });
@@ -116,7 +201,7 @@ NodeGenerator.prototype.askForUseVagrant = function askForUseVagrant() {
     name: 'useVagrant',
     type: 'confirm',
     message: 'Would you like to generate a Vagrantfile?',
-    default: false
+    default: true
   }], function (props) {
     this.useVagrant = props.useVagrant;
 
