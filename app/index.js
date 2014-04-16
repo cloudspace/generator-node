@@ -101,6 +101,9 @@ var NodeGenerator = module.exports = function NodeGenerator(args, options) {
 util.inherits(NodeGenerator, yeoman.generators.NamedBase);
 
 NodeGenerator.prototype.prompt = function(questions, callback) {
+  // Exit early if this is Generator trying to autocall methods
+  if (!callback) { return; }
+
   var generator = this;
   var answers = this._.reduce(questions, function(memo, question) {
     var name = question.name;
@@ -126,9 +129,7 @@ NodeGenerator.prototype.prompt = function(questions, callback) {
 
   return yeoman.generators.NamedBase.prototype.prompt.call(this, qs, function(props) {
     generator._.extend(props, answers);
-    if (callback) {
-      callback(props);
-    }
+    callback(props);
   });
 }
 
