@@ -12,9 +12,9 @@ var express = require('express')
   , favicon = require('static-favicon')
   , logger = require('morgan')
   , cookieParser = require('cookie-parser')
-  , bodyParser = require('body-parser')
+  , bodyParser = require('body-parser')<% if(usePassport) { %>
   , passport = require('passport')
-  , env = require('node-env-file')
+  , env = require('node-env-file')<% } %>
   ;
 
 var app = express();

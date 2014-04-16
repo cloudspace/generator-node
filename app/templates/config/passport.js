@@ -77,8 +77,9 @@ function verifyOauth2(access_token, refresh_token, profile, done) {
     process.nextTick(function() {
         user = {};
         user.provider      = profile.provider;
-        user.provider_id   = profile.id;
-        user.name          = profile.name.givenName + ' ' + profile.name.familyName;
+        user.provider_uid  = profile.id;
+        user.first_name    = profile.name.givenName;
+        user.last_name     = profile.name.familyName;
         user.email         = profile.emails[0].value;
         user.access_token  = access_token;
         user.refresh_token = refresh_token;
@@ -101,8 +102,10 @@ function verifyOauth1(token, tokenSecret, profile, done) {
     process.nextTick(function() {
         user = {};
         user.provider     = profile.provider;
-        user.provider_id  = profile.id;
-        user.name         = profile.displayName
+        user.provider_uid = profile.id;
+        user.first_name   = profile.name.givenName;
+        user.last_name    = profile.name.familyName;
+        user.email        = profile.emails[0].value;
         user.token        = token;
         user.token_secret = tokenSecret;
 
