@@ -18,17 +18,16 @@ var express = require('express')
 
 var app = express();
 
-app.configure(function() {
-  // Basics
-  app.set('port', 80);
-  app.use(express.static(__dirname + '/public/app'));
-  app.use(favicon());
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded());
-  app.use(cookieParser());
-  app.use(express.session({ secret: 'gobbledygook' }));
-});
+// Basics
+app.set('port', process.env.PORT || 80);
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public/app'));
+app.use(favicon());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
+app.use(express.session({ secret: 'gobbledygook' }));
 
 <% if(usePassport) { %>
 // Load process.env variables
