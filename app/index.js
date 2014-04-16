@@ -376,7 +376,7 @@ NodeGenerator.prototype.lib = function lib() {
 
 NodeGenerator.prototype.examples = function examples() {
   if(this.usePassport) {
-    this.template('examples/passport_example.html', 'public/app/passport_example.html');
+    this.template('views/index.ejs', 'views/index.ejs');
   }
 };
 
