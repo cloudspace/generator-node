@@ -89,6 +89,14 @@ var NodeGenerator = module.exports = function NodeGenerator(args, options) {
     type: String,
     defaults: null
   });
+  this.option('domain', {
+    type: String,
+    defaults: null
+  });
+  this.option('oauth_id', {
+    type: String,
+    defaults: null
+  });
 
   this._.extend(this.options, nopt(this._.reduce(this._options, function(memo, option) {
     memo[option.name] = option.type;
