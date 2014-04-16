@@ -39,7 +39,8 @@
     "passport-google-oauth": "^0.1.5"<% } %><% if (useGithub) { %>,
     "passport-github": "^0.1.5"<% } %><% if (useLinkedIn) { %>,
     "passport-linkedin-oauth2": "^1.1.1"<% } %>,
-    "node-env-file": "^0.1.0"<% } %>
+    "node-env-file": "^0.1.0",
+    "request": "^2.34.0"<% } %>
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",
