@@ -89,7 +89,7 @@ function setTokenCookiesAndRedirect(req, res) {
         if (err) { return res.redirect('/'); }
         res.cookie('accessToken', JSON.stringify(tokens.token));
         res.cookie('refreshToken', JSON.stringify(tokens.refresh_token));
-        res.redirect(req.session.return_to);
+        res.redirect(req.session.return_to || '/');
         delete req.session.return_to;
     };
 }
