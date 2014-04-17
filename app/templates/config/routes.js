@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
         failureRedirect: '/'
     }), function(req, res) {
-      getOrCreateUser(req.user, setTokenCookiesAndRedirect(res));
+      getOrCreateUser(req.user, setTokenCookiesAndRedirect(req, res));
     });
     <% } %>
 
@@ -29,7 +29,7 @@ module.exports = function(app, passport) {
     app.get('/auth/google/callback', passport.authenticate('google', {
         failureRedirect: '/'
     }), function(req, res) {
-      getOrCreateUser(req.user, setTokenCookiesAndRedirect(res));
+      getOrCreateUser(req.user, setTokenCookiesAndRedirect(req, res));
     });
     <% } %>
 
@@ -38,7 +38,7 @@ module.exports = function(app, passport) {
     app.get('/auth/github/callback', passport.authenticate('github', {
         failureRedirect: '/'
     }), function(req, res) {
-      getOrCreateUser(req.user, setTokenCookiesAndRedirect(res));
+      getOrCreateUser(req.user, setTokenCookiesAndRedirect(req, res));
     });
     <% } %>
 
@@ -47,7 +47,7 @@ module.exports = function(app, passport) {
     app.get('/auth/twitter/callback', passport.authenticate('twitter', {
         failureRedirect: '/'
     }), function(req, res) {
-      getOrCreateUser(req.user, setTokenCookiesAndRedirect(res));
+      getOrCreateUser(req.user, setTokenCookiesAndRedirect(req, res));
     });
     <% } %>
 
@@ -56,13 +56,18 @@ module.exports = function(app, passport) {
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
         failureRedirect: '/'
     }), function(req, res) {
-      getOrCreateUser(req.user, setTokenCookiesAndRedirect(res));
+      getOrCreateUser(req.user, setTokenCookiesAndRedirect(req, res));
     });
     <% } %>
 <% } %>
 }
 
 <% if(usePassport) { %>
+function storeRedirect(req, res, next) {
+    req.session.return_to = req.get('Referrer') || '/';
+    if (next) { next(); }
+}
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -79,12 +84,13 @@ function getOrCreateUser(user, done) {
   });
 }
 
-function setTokenCookiesAndRedirect(res) {
+function setTokenCookiesAndRedirect(req, res) {
     return function(err, tokens) {
         if (err) { return res.redirect('/'); }
         res.cookie('accessToken', JSON.stringify(tokens.token));
         res.cookie('refreshToken', JSON.stringify(tokens.refresh_token));
-        res.redirect('/profile');
+        res.redirect(req.session.return_to);
+        delete req.session.return_to;
     };
 }
 <% } %>
