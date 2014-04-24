@@ -8,7 +8,7 @@
 
 var exec = require('child_process').exec;
 
-exec('bower install', {cwd: './public'}, function(e) {
+exec('bower install', {cwd: __dirname + '/public'}, function(e) {
   var express = require('express')
     , http = require('http')
     , favicon = require('static-favicon')
